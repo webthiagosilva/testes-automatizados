@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests;
+
 use App\NumberComparator;
 use PHPUnit\Framework\TestCase;
 
