@@ -1,4 +1,3 @@
-# Inclua o arquivo .env e exporte suas variáveis para o ambiente do make
 ifneq (,$(wildcard ./.env))
 	include .env
 	export
@@ -13,7 +12,7 @@ build:
 	docker build --build-arg user=$$USER --build-arg uid=$$UID --build-arg XDEBUG_ENABLED=$$XDEBUG_ENABLED -t $$IMAGE_NAME .
 
 run: remove-container
-	docker run -it -d -p 8001:8001 --name $$CONTAINER_NAME -v $(PWD):/var/www/html --network $$NETWORK_NAME --memory="500m" --cpus="1.0" $$IMAGE_NAME
+	docker run -it -d -p 8000:8000 --name $$CONTAINER_NAME -v $(PWD):/var/www/html --network $$NETWORK_NAME --memory="500m" --cpus="1.0" $$IMAGE_NAME
 
 shell:
 	docker exec -u 0 -it $$CONTAINER_NAME /bin/bash

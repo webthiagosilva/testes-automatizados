@@ -26,4 +26,4 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
-CMD ["php", "-S", "0.0.0.0:8001"]
+CMD ["php", "-S", "0.0.0.0:8000"]
