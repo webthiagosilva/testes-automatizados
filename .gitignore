@@ -1,43 +1,10 @@
-# Composer dependencies
 /vendor/
-
-# Composer's own files
 /composer.lock
-/composer.phar
 
-# Logs and caches
 /logs/
 /cache/
 /.php_cs.cache
 /.phpunit.result.cache
 
-# OS or Editor folders
-.DS_Store
-Thumbs.db
-.idea/
-*.swp
-*.swo
-*.sublime-workspace
-
-# Environment files
 .env
-.env.local
-.env.*.local
-
-# PHP Storm project files
-.idea/
-
-# Node modules
-node_modules/
-
-# Security
-*.key
-
-# Exported databases
-*.sql
-*.sql.gz
-
-
-# PHPUnit test reports and coverage
 /coverage/
-.phpunit.result.cache
