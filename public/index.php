@@ -6,11 +6,11 @@ require __DIR__ . '/../vendor/autoload.php';
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
 use PHPUnit\Util\TestDox\HtmlResultPrinter;
-use Tests\NumberComparatorTest;
+use Tests\MultipleSumCalculatorTest;
 
 if (getenv('APP_ENV') !== 'prod') {
     $suite = new TestSuite('My Test Suite');
-    $suite->addTestSuite(NumberComparatorTest::class);
+    $suite->addTestSuite(MultipleSumCalculatorTest::class);
 
     $htmlOutputFile = __DIR__ . '/test-results.html';
 
