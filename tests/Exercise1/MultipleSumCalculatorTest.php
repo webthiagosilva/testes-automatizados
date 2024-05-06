@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Tests\Exercise1;;
 
 use PHPUnit\Framework\TestCase;
 use App\Exercises\Exercise1\MultipleSumCalculator;
