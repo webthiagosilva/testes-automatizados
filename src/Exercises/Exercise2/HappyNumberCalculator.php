@@ -1,29 +1,42 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Exercises\Exercise2;
+
+use InvalidArgumentException;
 
 class HappyNumberCalculator
 {
 	private const HAPPY_NUMBER = 1;
 
+	private SquareDigitSumCalculator $calculator;
+
+	public function __construct(SquareDigitSumCalculator $calculator)
+	{
+		$this->calculator = $calculator;
+	}
+
 	public function isHappy(int $number): bool
 	{
+		$this->validateNumber($number);
+
 		$seen = [];
-		while ($number != self::HAPPY_NUMBER && !isset($seen[$number])) {
+		while (!$this->hasReachedHappyOrRepeatedState($number, $seen)) {
 			$seen[$number] = true;
-			$number = $this->sumOfSquaresOfDigits($number);
+			$number = $this->calculator->sumOfSquaresOfDigits($number);
 		}
+
 		return $number === self::HAPPY_NUMBER;
 	}
 
-	private function sumOfSquaresOfDigits(int $number): int
+	private function validateNumber(int $number): void
 	{
-		$sum = 0;
-		while ($number > 0) {
-			$digit = $number % 10;
-			$sum += $digit * $digit;
-			$number = intdiv($number, 10);
-		}
-		return $sum;
+		if ($number < 1) throw new InvalidArgumentException('Number must be greater than 0.');
+	}
+
+	private function hasReachedHappyOrRepeatedState(int $number, array $seen): bool
+	{
+		return $number === self::HAPPY_NUMBER || isset($seen[$number]);
 	}
 }

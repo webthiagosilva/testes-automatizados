@@ -2,48 +2,61 @@
 
 use PHPUnit\Framework\TestCase;
 use App\Exercises\Exercise2\HappyNumberCalculator;
-use App\Exercises\Exercise2\DigitCalculator;
+use App\Exercises\Exercise2\SquareDigitSumCalculator;
 
 class HappyNumberCalculatorTest extends TestCase
 {
-	// public function testRejectsNonPositiveNumbers()
-	// {
-	// 	$calculator = new HappyNumberCalculator(new DigitCalculator());
+	private HappyNumberCalculator $calculator;
 
-	// 	$this->expectException(InvalidArgumentException::class);
-	// 	$calculator->isHappy(-1);
-	// }
+	protected function setUp(): void
+	{
+		$this->calculator = new HappyNumberCalculator(new SquareDigitSumCalculator());
+	}
 
-	// public function testRejectsNonIntegerNumbers()
-	// {
-	// 	$calculator = new HappyNumberCalculator(new DigitCalculator());
+	public function testIsHappyWithHappyNumber()
+	{
+		$this->assertTrue($this->calculator->isHappy(1));
+		$this->assertTrue($this->calculator->isHappy(7));
+		$this->assertTrue($this->calculator->isHappy(10));
+	}
 
-	// 	$this->expectException(InvalidArgumentException::class);
-	// 	$calculator->isHappy(1.5);
-	// }
+	public function testIsHappyWithUnhappyNumber()
+	{
+		$this->assertFalse($this->calculator->isHappy(2));
+		$this->assertFalse($this->calculator->isHappy(3));
+		$this->assertFalse($this->calculator->isHappy(4));
+	}
 
-	// public function testIsHappyNumber()
-	// {
-	// 	$calculator = new HappyNumberCalculator(new DigitCalculator());
+	public function testIsHappyWithLargeHappyNumber()
+	{
+		$this->assertTrue($this->calculator->isHappy(10000));
+		$this->assertTrue($this->calculator->isHappy(67890));
+		$this->assertTrue($this->calculator->isHappy(6789));
+	}
 
-	// 	$this->assertTrue($calculator->isHappy(1));
-	// 	$this->assertTrue($calculator->isHappy(7));
-	// 	$this->assertTrue($calculator->isHappy(19));
-	// }
+	public function testIsHappyWithLargeUnhappyNumber()
+	{
+		$this->assertFalse($this->calculator->isHappy(1234));
+		$this->assertFalse($this->calculator->isHappy(678));
+		$this->assertFalse($this->calculator->isHappy(6780));
+	}
 
-	// public function testIsNotHappyNumber()
-	// {
-	// 	$calculator = new HappyNumberCalculator(new DigitCalculator());
+	public function testAvoidsCycleNumbers()
+	{
+		$this->assertFalse($this->calculator->isHappy(116));
+		$this->assertFalse($this->calculator->isHappy(61));
+		$this->assertFalse($this->calculator->isHappy(37));
+	}
 
-	// 	$this->assertFalse($calculator->isHappy(2));
-	// 	$this->assertFalse($calculator->isHappy(4));
-	// 	$this->assertFalse($calculator->isHappy(20));
-	// }
+	public function testIsHappyWithInvalidNumber()
+	{
+		$this->expectException(InvalidArgumentException::class);
+		$this->calculator->isHappy(0);
+	}
 
-	// public function testAvoidsInfiniteLoop()
-	// {
-	// 	$calculator = new HappyNumberCalculator(new DigitCalculator());
-
-	// 	$this->assertFalse($calculator->isHappy(116));
-	// }
+	public function testIsHappyWithNegativeNumber()
+	{
+		$this->expectException(InvalidArgumentException::class);
+		$this->calculator->isHappy(-1);
+	}
 }
