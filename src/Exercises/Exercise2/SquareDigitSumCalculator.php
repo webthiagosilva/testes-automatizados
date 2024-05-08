@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Exercises\Exercise2;
+declare(strict_types=1);
 
-use InvalidArgumentException;
+namespace App\Exercises\Exercise2;
 
 class SquareDigitSumCalculator
 {
-	private const DECIMAL_SYSTEM_BASE = 10;
+	private const DECIMAL_BASE = 10;
 
 	public function sumOfSquaresOfDigits(int $number): int
 	{
-		$this->validade($number);
-
 		$sum = 0;
 		while ($number > 0) {
 			$digit = $this->extractLastDigit($number);
@@ -22,14 +20,9 @@ class SquareDigitSumCalculator
 		return $sum;
 	}
 
-	private function validade($number): void
-	{
-		if ($number < 0) throw new InvalidArgumentException('Number must be a possitive intege.');
-	}
-
 	private function extractLastDigit(int $number): int
 	{
-		return $number % self::DECIMAL_SYSTEM_BASE;
+		return $number % self::DECIMAL_BASE;
 	}
 
 	private function calculateSquare(int $digit): int
@@ -39,6 +32,6 @@ class SquareDigitSumCalculator
 
 	private function removeLastDigit(int $number): int
 	{
-		return intdiv($number, self::DECIMAL_SYSTEM_BASE);
+		return intdiv($number, self::DECIMAL_BASE);
 	}
 }

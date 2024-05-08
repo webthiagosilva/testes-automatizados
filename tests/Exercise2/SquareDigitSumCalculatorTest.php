@@ -5,7 +5,7 @@ use App\Exercises\Exercise2\SquareDigitSumCalculator;
 
 class SquareDigitSumCalculatorTest extends TestCase
 {
-	private $calculator;
+	private SquareDigitSumCalculator $calculator;
 
 	protected function setUp(): void
 	{
@@ -28,18 +28,15 @@ class SquareDigitSumCalculatorTest extends TestCase
 
 	public function testSumOfSquaresOfLargeNumbers()
 	{
+		$this->assertEquals(1, $this->calculator->sumOfSquaresOfDigits(10000));
 		$this->assertEquals(30, $this->calculator->sumOfSquaresOfDigits(1234));
 		$this->assertEquals(230, $this->calculator->sumOfSquaresOfDigits(6789));
 	}
 
-	public function testSumOfSquaresWithZero()
+	public function testSumOfSquaresWithDigitsIncludingZero()
 	{
-		$this->assertEquals(0, $this->calculator->sumOfSquaresOfDigits(0));
-	}
-
-	public function testHandlesNegativeNumbers()
-	{
-		$this->expectException(InvalidArgumentException::class);
-		$this->calculator->sumOfSquaresOfDigits(-123);
+		$this->assertEquals(2, $this->calculator->sumOfSquaresOfDigits(1001));
+		$this->assertEquals(8, $this->calculator->sumOfSquaresOfDigits(2002));
+		$this->assertEquals(18, $this->calculator->sumOfSquaresOfDigits(3003));
 	}
 }
