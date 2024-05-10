@@ -1,23 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Exercises\Exercise1;
 
-use App\Exercises\Exercise1\Interfaces\MultipleRuleStrategyInterface;
+use App\Exercises\Exercise1\MultipleCheckerInterface;
 
 class MultipleSumCalculator
 {
-    private $strategy;
+    private const LIMIT = 1000;
 
-    public function __construct(MultipleRuleStrategyInterface $strategy)
+    private MultipleCheckerInterface $multipleChecker;
+
+    public function __construct(MultipleCheckerInterface $multipleCheckerInterface)
     {
-        $this->strategy = $strategy;
+        $this->multipleChecker = $multipleCheckerInterface;
     }
 
-    public function calculateSum(int $limit): int
+    public function calculateSum(): int
     {
         $sum = 0;
-        for ($number = 0; $number <= $limit; $number++) {
-            if ($this->strategy->isMultiple($number)) {
+        for ($number = 0; $number <= self::LIMIT; $number++) {
+            if ($this->multipleChecker->isMultiple($number)) {
                 $sum += $number;
             }
         }
