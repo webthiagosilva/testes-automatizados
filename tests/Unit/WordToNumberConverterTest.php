@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature;
+namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use App\Exercises\Exercise3\WordToNumberConverter;
