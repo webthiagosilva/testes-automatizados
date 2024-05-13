@@ -13,14 +13,14 @@ class NumberUtil
 		return $number % $divisor === 0;
 	}
 
-	public static function extractLastDigit(int $number): int
-	{
-		return $number % self::DECIMAL_BASE;
-	}
-
 	public static function calculateSquare(int $digit): int
 	{
 		return $digit * $digit;
+	}
+
+	public static function extractLastDigit(int $number): int
+	{
+		return $number % self::DECIMAL_BASE;
 	}
 
 	public static function removeLastDigit(int $number): int
