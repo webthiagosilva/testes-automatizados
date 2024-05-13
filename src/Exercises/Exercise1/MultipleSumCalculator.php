@@ -8,7 +8,7 @@ use App\Exercises\Exercise1\MultipleCheckerInterface;
 
 class MultipleSumCalculator
 {
-    private const LIMIT = 1000;
+    public const LIMIT = 1000;
 
     private MultipleCheckerInterface $multipleChecker;
 

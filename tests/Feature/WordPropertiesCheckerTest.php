@@ -12,7 +12,7 @@ use App\Exercises\Exercise1\MultipleOf3Or5Strategy;
 
 class WordPropertiesCheckerTest extends TestCase
 {
-	public function wordPropertiesProvider()
+	public function wordPropertiesProvider(): array
 	{
 		return [
 			['abc', ['isPrime' => false, 'isHappy' => false, 'isMultipleOf3Or5' => true]],
@@ -30,7 +30,7 @@ class WordPropertiesCheckerTest extends TestCase
 	/**
 	 * @dataProvider wordPropertiesProvider
 	 */
-	public function testCheckProperties(string $word, array $expectedProperties)
+	public function testCheckProperties(string $word, array $expectedProperties): void
 	{
 		$wordPropertiesChecker = new WordPropertiesChecker(
 			new WordToNumberConverter(),

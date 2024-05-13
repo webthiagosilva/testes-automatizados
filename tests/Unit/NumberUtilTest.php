@@ -17,7 +17,7 @@ class NumberUtilTest extends TestCase
 	/**
 	 * @dataProvider multipleProvider
 	 */
-	public function testIsMultiple(int $number, int $divisor, bool $expected)
+	public function testIsMultiple(int $number, int $divisor, bool $expected): void
 	{
 		$this->assertEquals($expected, NumberUtil::isMultiple($number, $divisor));
 	}
@@ -30,12 +30,12 @@ class NumberUtilTest extends TestCase
 	/**
 	 * @dataProvider lastDigitProvider
 	 */
-	public function testExtractLastDigit(int $number, int $expected)
+	public function testExtractLastDigit(int $number, int $expected): void
 	{
 		$this->assertEquals($expected, NumberUtil::extractLastDigit($number));
 	}
 
-	public function squareProvider()
+	public function squareProvider(): array
 	{
 		return [[3, 9], [5, 25], [10, 100], [0, 0]];
 	}
@@ -43,12 +43,12 @@ class NumberUtilTest extends TestCase
 	/**
 	 * @dataProvider squareProvider
 	 */
-	public function testCalculateSquare(int $digit, int $expected)
+	public function testCalculateSquare(int $digit, int $expected): void
 	{
 		$this->assertEquals($expected, NumberUtil::calculateSquare($digit));
 	}
 
-	public function removeLastDigitProvider()
+	public function removeLastDigitProvider(): array
 	{
 		return [[1234, 123], [50, 5], [7, 0], [98765, 9876]];
 	}
@@ -56,12 +56,12 @@ class NumberUtilTest extends TestCase
 	/**
 	 * @dataProvider removeLastDigitProvider
 	 */
-	public function testRemoveLastDigit(int $number, int $expected)
+	public function testRemoveLastDigit(int $number, int $expected): void
 	{
 		$this->assertEquals($expected, NumberUtil::removeLastDigit($number));
 	}
 
-	public function primeProvider()
+	public function primeProvider(): array
 	{
 		return [[2, true], [3, true], [4, false], [13, true], [25, false], [97, true], [1, false], [0, false], [-7, false]];
 	}
@@ -69,7 +69,7 @@ class NumberUtilTest extends TestCase
 	/**
 	 * @dataProvider primeProvider
 	 */
-	public function testIsPrime(int $number, bool $expected)
+	public function testIsPrime(int $number, bool $expected): void
 	{
 		$this->assertEquals($expected, NumberUtil::isPrime($number));
 	}

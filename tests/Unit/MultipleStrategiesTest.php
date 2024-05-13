@@ -25,7 +25,7 @@ class MultipleStrategiesTest extends TestCase
 	/**
 	 * @dataProvider multipleOf3Or5DataProvider
 	 */
-	public function testMultipleOf3Or5Strategy(int $number, bool $expected)
+	public function testMultipleOf3Or5Strategy(int $number, bool $expected): void
 	{
 		$strategy = new MultipleOf3Or5Strategy();
 		$this->assertEquals($expected, $strategy->isMultiple($number));
@@ -45,7 +45,7 @@ class MultipleStrategiesTest extends TestCase
 	/**
 	 * @dataProvider multipleOf3And5DataProvider
 	 */
-	public function testMultipleOf3And5Strategy(int $number, bool $expected)
+	public function testMultipleOf3And5Strategy(int $number, bool $expected): void
 	{
 		$strategy = new MultipleOf3And5Strategy();
 		$this->assertEquals($expected, $strategy->isMultiple($number));
@@ -67,7 +67,7 @@ class MultipleStrategiesTest extends TestCase
 	/**
 	 * @dataProvider multipleOf3Or5And7DataProvider
 	 */
-	public function testMultipleOf3Or5And7Strategy(int $number, bool $expected)
+	public function testMultipleOf3Or5And7Strategy(int $number, bool $expected): void
 	{
 		$strategy = new MultipleOf3Or5And7Strategy();
 		$this->assertEquals($expected, $strategy->isMultiple($number));

@@ -12,21 +12,21 @@ use App\Exercises\Exercise1\MultipleOf3Or5And7Strategy;
 
 class MultipleSumCalculatorTest extends TestCase
 {
-    public function testSumOfMultiplesOf3Or5()
+    public function testSumOfMultiplesOf3Or5(): void
     {
         $calculator = new MultipleSumCalculator(new MultipleOf3Or5Strategy());
-        $this->assertEquals(234168, $calculator->calculateSum(1000));
+        $this->assertEquals(234168, $calculator->calculateSum());
     }
 
-    public function testSumOfMultiplesOf3And5()
+    public function testSumOfMultiplesOf3And5(): void
     {
         $calculator = new MultipleSumCalculator(new MultipleOf3And5Strategy());
-        $this->assertEquals(33165, $calculator->calculateSum(1000));
+        $this->assertEquals(33165, $calculator->calculateSum());
     }
 
-    public function testSumOfMultiplesOf3Or5And7()
+    public function testSumOfMultiplesOf3Or5And7(): void
     {
         $calculator = new MultipleSumCalculator(new MultipleOf3Or5And7Strategy());
-        $this->assertEquals(33173, $calculator->calculateSum(1000));
+        $this->assertEquals(33173, $calculator->calculateSum());
     }
 }

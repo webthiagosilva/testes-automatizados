@@ -9,7 +9,7 @@ use App\Exercises\Exercise3\WordToNumberConverter;
 
 class WordToNumberConverterTest extends TestCase
 {
-	public function wordProvider()
+	public function wordProvider(): array
 	{
 		return [
 			['abc', 1 + 2 + 3],
@@ -26,7 +26,7 @@ class WordToNumberConverterTest extends TestCase
 	/**
 	 * @dataProvider wordProvider
 	 */
-	public function testConvertToNumber(string $word, int $expectedSum)
+	public function testConvertToNumber(string $word, int $expectedSum): void
 	{
 		$converter = new WordToNumberConverter();
 		$this->assertEquals($expectedSum, $converter->convertToNumber($word));

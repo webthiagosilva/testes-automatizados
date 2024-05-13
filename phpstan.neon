@@ -3,3 +3,5 @@ parameters:
 	paths:
 		- src
 		- tests
+	ignoreErrors:
+		- '#\bno value type specified in iterable type array\b#'

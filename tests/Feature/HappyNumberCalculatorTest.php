@@ -9,7 +9,7 @@ use App\Exercises\Exercise2\HappyNumberCalculator;
 
 class HappyNumberCalculatorTest extends TestCase
 {
-	public function numberProvider()
+	public function numberProvider(): array
 	{
 		return [
 			[7, true],
@@ -31,7 +31,7 @@ class HappyNumberCalculatorTest extends TestCase
 	/**
 	 * @dataProvider numberProvider
 	 */
-	public function testIsHappy(int $number, bool $expected)
+	public function testIsHappy(int $number, bool $expected): void
 	{
 		$calculator = new HappyNumberCalculator();
 		$this->assertEquals($expected, $calculator->isHappy($number));
