@@ -9,7 +9,7 @@ create-network:
 	@docker network ls | grep -w $$NETWORK_NAME || docker network create $$NETWORK_NAME
 
 build:
-	docker build --build-arg user=$$USER --build-arg uid=$$UID --build-arg -t $$IMAGE_NAME .
+	docker build --build-arg user=$$USER --build-arg uid=$$UID -t $$IMAGE_NAME .
 
 run: remove-container
 	docker run -it -d -p 8000:8000 --name $$CONTAINER_NAME -v $(PWD):/var/www/html --network $$NETWORK_NAME --memory="500m" --cpus="1.0" $$IMAGE_NAME
