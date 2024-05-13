@@ -1,37 +1,45 @@
 <?php
 
+declare(strict_types=1);
+
 error_reporting(E_ALL & ~E_WARNING);
 require __DIR__ . '/../vendor/autoload.php';
 
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
 use PHPUnit\Util\TestDox\HtmlResultPrinter;
-use Tests\MultipleSumCalculatorTest;
+use Tests\Feature\MultipleSumCalculatorTest;
+use Tests\Feature\HappyNumberCalculatorTest;
+use Tests\Feature\WordPropertiesCheckerTest;
+use Tests\Unit\MultipleStrategiesTest;
+use Tests\Unit\NumberUtilTest;
+use Tests\Unit\WordToNumberConverterTest;
 
-if (getenv('APP_ENV') !== 'prod') {
-    $suite = new TestSuite('My Test Suite');
-    $suite->addTestSuite(MultipleSumCalculatorTest::class);
+$suite = new TestSuite('My Test Suite');
+$suite->addTestSuite(MultipleSumCalculatorTest::class);
+$suite->addTestSuite(HappyNumberCalculatorTest::class);
+$suite->addTestSuite(WordPropertiesCheckerTest::class);
+$suite->addTestSuite(NumberUtilTest::class);
+$suite->addTestSuite(MultipleStrategiesTest::class);
+$suite->addTestSuite(WordToNumberConverterTest::class);
 
-    $htmlOutputFile = __DIR__ . '/test-results.html';
+$htmlOutputFile = __DIR__ . '/test-results.html';
 
-    $runner = new TestRunner();
+$runner = new TestRunner();
 
-    $htmlPrinter = new HtmlResultPrinter($htmlOutputFile);
+$htmlPrinter = new HtmlResultPrinter($htmlOutputFile);
 
-    $arguments = [
-        'verbose' => true,
-        'colors' => 'always',
-        'testdoxHTMLFile' => $htmlOutputFile,
-        'cacheResultFile' => __DIR__ . '/../.phpunit.result.cache',
-    ];
+$arguments = [
+    'verbose' => true,
+    'colors' => 'always',
+    'testdoxHTMLFile' => $htmlOutputFile,
+    'cacheResultFile' => __DIR__ . '/../.phpunit.result.cache',
+];
 
-    $runner->run($suite, $arguments, [], false);
+$runner->run($suite, $arguments, [], false);
 
-    if (file_exists($htmlOutputFile)) {
-        echo file_get_contents($htmlOutputFile);
-    } else {
-        echo "Não foi possível gerar o arquivo de resultados de teste.";
-    }
+if (file_exists($htmlOutputFile)) {
+    echo file_get_contents($htmlOutputFile);
 } else {
-    echo "Test runner is not available in the production environment.";
+    echo "Não foi possível gerar o arquivo de resultados de teste.";
 }
