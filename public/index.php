@@ -24,9 +24,6 @@ $suite->addTestSuite(MultipleStrategiesTest::class);
 $suite->addTestSuite(WordToNumberConverterTest::class);
 
 $htmlOutputFile = __DIR__ . '/test-results.html';
-
-$runner = new TestRunner();
-
 $htmlPrinter = new HtmlResultPrinter($htmlOutputFile);
 
 $arguments = [
@@ -36,10 +33,11 @@ $arguments = [
     'cacheResultFile' => __DIR__ . '/../.phpunit.result.cache',
 ];
 
+$runner = new TestRunner();
 $runner->run($suite, $arguments, [], false);
 
 if (file_exists($htmlOutputFile)) {
     echo file_get_contents($htmlOutputFile);
 } else {
-    echo "Não foi possível gerar o arquivo de resultados de teste.";
+    echo "Unable to generate test results file.";
 }
