@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Exercises\Exercise4\Interfaces;
+namespace App\Exercises\ExerciseFour\Interfaces;
 
 interface ShippingServiceInterface
 {

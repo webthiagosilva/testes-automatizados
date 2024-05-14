@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Tests\Feature;
 
 use PHPUnit\Framework\TestCase;
-use App\Exercises\Exercise3\WordToNumberConverter;
-use App\Exercises\Exercise3\WordPropertiesChecker;
-use App\Exercises\Exercise2\HappyNumberCalculator;
-use App\Exercises\Exercise1\MultipleOf3Or5Strategy;
+use App\Exercises\ExerciseThree\WordToNumberConverter;
+use App\Exercises\ExerciseThree\WordPropertiesChecker;
+use App\Exercises\ExerciseTwo\HappyNumberCalculator;
+use App\Exercises\ExerciseOne\MultipleOf3Or5Strategy;
 
 class WordPropertiesCheckerTest extends TestCase
 {

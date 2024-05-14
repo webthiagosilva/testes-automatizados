@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Exercises\Exercise4\Services;
+namespace App\Exercises\ExerciseFour\Services;
 
-use App\Exercises\Exercise4\Models\Cart;
-use App\Exercises\Exercise4\Interfaces\ShippingServiceInterface;
+use App\Exercises\ExerciseFour\Models\Cart;
+use App\Exercises\ExerciseFour\Interfaces\ShippingServiceInterface;
 
 class CalculationService
 {

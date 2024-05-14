@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Exercises\Exercise3;
+namespace App\Exercises\ExerciseThree;
 
 class WordToNumberConverter
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Exercises\Exercise1;
+namespace App\Exercises\ExerciseOne;
 
 interface MultipleCheckerInterface
 {

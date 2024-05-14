@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Tests\Feature;
 
 use PHPUnit\Framework\TestCase;
-use App\Exercises\Exercise1\MultipleSumCalculator;
-use App\Exercises\Exercise1\MultipleOf3Or5Strategy;
-use App\Exercises\Exercise1\MultipleOf3And5Strategy;
-use App\Exercises\Exercise1\MultipleOf3Or5And7Strategy;
+use App\Exercises\ExerciseOne\MultipleSumCalculator;
+use App\Exercises\ExerciseOne\MultipleOf3Or5Strategy;
+use App\Exercises\ExerciseOne\MultipleOf3And5Strategy;
+use App\Exercises\ExerciseOne\MultipleOf3Or5And7Strategy;
 
 class MultipleSumCalculatorTest extends TestCase
 {

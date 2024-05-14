@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Tests\Feature;
 
 use PHPUnit\Framework\TestCase;
-use App\Exercises\Exercise4\Models\Cart;
-use App\Exercises\Exercise4\Models\User;
-use App\Exercises\Exercise4\Models\Product;
+use App\Exercises\ExerciseFour\Models\Cart;
+use App\Exercises\ExerciseFour\Models\User;
+use App\Exercises\ExerciseFour\Models\Product;
 
 class CartTest extends TestCase
 {

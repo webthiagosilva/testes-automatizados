@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Exercises\Exercise2;
+namespace App\Exercises\ExerciseTwo;
 
 use App\Common\NumberUtil;
 

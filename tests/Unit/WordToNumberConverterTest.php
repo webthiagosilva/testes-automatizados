@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use App\Exercises\Exercise3\WordToNumberConverter;
+use App\Exercises\ExerciseThree\WordToNumberConverter;
 
 class WordToNumberConverterTest extends TestCase
 {

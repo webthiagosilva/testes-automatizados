@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Exercises\Exercise4\Models;
+namespace App\Exercises\ExerciseFour\Models;
 
 class User
 {

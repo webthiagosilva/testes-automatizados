@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Feature;
 
 use PHPUnit\Framework\TestCase;
-use App\Exercises\Exercise2\HappyNumberCalculator;
+use App\Exercises\ExerciseTwo\HappyNumberCalculator;
 
 class HappyNumberCalculatorTest extends TestCase
 {

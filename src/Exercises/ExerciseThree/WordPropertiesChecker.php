@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Exercises\Exercise3;
+namespace App\Exercises\ExerciseThree;
 
 use App\Common\NumberUtil;
-use App\Exercises\Exercise1\MultipleOf3Or5Strategy;
-use App\Exercises\Exercise2\HappyNumberCalculator;
+use App\Exercises\ExerciseOne\MultipleOf3Or5Strategy;
+use App\Exercises\ExerciseTwo\HappyNumberCalculator;
 
 class WordPropertiesChecker
 {

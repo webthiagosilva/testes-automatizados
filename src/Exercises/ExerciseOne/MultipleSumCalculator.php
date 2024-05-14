@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Exercises\Exercise1;
+namespace App\Exercises\ExerciseOne;
 
-use App\Exercises\Exercise1\MultipleCheckerInterface;
+use App\Exercises\ExerciseOne\MultipleCheckerInterface;
 
 class MultipleSumCalculator
 {
