@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Exercises\ExerciseFour\Models;
+namespace App\Exercises\ExerciseFour;
 
 class Product
 {

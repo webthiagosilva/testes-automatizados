@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Tests\Feature;
 
 use PHPUnit\Framework\TestCase;
-use App\Exercises\ExerciseFour\Models\User;
-use App\Exercises\ExerciseFour\Models\Product;
-use App\Exercises\ExerciseFour\Models\Cart;
-use App\Exercises\ExerciseFour\Interfaces\ShippingServiceInterface;
-use App\Exercises\ExerciseFour\Services\CalculationService;
+use App\Exercises\ExerciseFour\User;
+use App\Exercises\ExerciseFour\Product;
+use App\Exercises\ExerciseFour\Cart;
+use App\Exercises\ExerciseFour\ShippingServiceInterface;
+use App\Exercises\ExerciseFour\CalculationService;
 
 class CalculationServiceTest extends TestCase
 {

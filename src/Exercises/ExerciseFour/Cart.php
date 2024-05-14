@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Exercises\ExerciseFour\Models;
+namespace App\Exercises\ExerciseFour;
 
 class Cart
 {
@@ -16,6 +16,8 @@ class Cart
 
 	public function addProduct(Product $product, int $quantity): void
 	{
+		if ($quantity < 1) return;
+
 		if (isset($this->products[$product->name])) {
 			$this->products[$product->name]['quantity'] += $quantity;
 		} else {
