@@ -8,102 +8,80 @@ use PHPUnit\Framework\TestCase;
 use App\Exercises\ExerciseFour\Models\Cart;
 use App\Exercises\ExerciseFour\Models\User;
 use App\Exercises\ExerciseFour\Models\Product;
+use App\Exercises\ExerciseFour\Services\CartItemManagerService;
 
 class CartTest extends TestCase
 {
-	public function cartProvider(): array
-	{
-		return [
-			'empty cart' => [
-				'products' => [],
-				'expectedTotal' => 0.0
-			],
-			'one product' => [
-				'products' => [
-					['product' => new Product('Product 1', 50.0), 'quantity' => 2]
-				],
-				'expectedTotal' => 100.0
-			],
-			'multiple products' => [
-				'products' => [
-					['product' => new Product('Product 1', 50.0), 'quantity' => 1],
-					['product' => new Product('Product 2', 75.0), 'quantity' => 1]
-				],
-				'expectedTotal' => 125.0
-			],
-			'add existing product' => [
-				'products' => [
-					['product' => new Product('Product 1', 50.0), 'quantity' => 1],
-					['product' => new Product('Product 1', 50.0), 'quantity' => 1]
-				],
-				'expectedTotal' => 100.0
-			]
-		];
-	}
-
 	/**
-	 * @dataProvider cartProvider
+	 * @dataProvider cartOperationProvider
 	 */
-	public function testCart(array $products, float $expectedTotal): void
+	public function testCartOperations(array $operations, float $expectedTotal): void
 	{
-		$user = new User('John', '12345678');
-		$cart = new Cart($user);
+		$user = new User('Michael Jackson', '1234567890');
+		$cart = new Cart($user, new CartItemManagerService());
 
-		foreach ($products as $product) {
-			$cart->addProduct($product['product'], $product['quantity']);
+		foreach ($operations as $operation) {
+			match ($operation['type']) {
+				'add' => $cart->addItem(new Product($operation['name'], $operation['price']), $operation['quantity']),
+				'sub' => $cart->subItem($operation['itemKey'], $operation['quantity']),
+				'adds' => $cart->addItems([
+					['item' => new Product($operation['name'], $operation['price']), 'quantity' => $operation['quantity']]
+				]),
+				'remove' => $cart->removeItem($operation['itemKey']),
+			};
 		}
 
 		$this->assertEquals($expectedTotal, $cart->getTotalValue());
 	}
 
-	public function testRemoveProduct(): void
+	public function cartOperationProvider(): array
 	{
-		$user = new User('John', '12345678');
-		$cart = new Cart($user);
-		$product1 = new Product('Product 1', 50.0);
-		$product2 = new Product('Product 2', 75.0);
-
-		$cart->addProduct($product1, 2);
-		$cart->addProduct($product2, 1);
-		$cart->removeProduct($product1);
-
-		$this->assertEquals(75.0, $cart->getTotalValue());
-	}
-
-	public function testAddTwoProductsAtOnce(): void
-	{
-		$user = new User('John', '12345678');
-		$cart = new Cart($user);
-		$product1 = new Product('Product 1', 50.0);
-		$product2 = new Product('Product 2', 75.0);
-
-		$cart->addProduct($product1, 1);
-		$cart->addProduct($product2, 1);
-
-		$this->assertEquals(125.0, $cart->getTotalValue());
-	}
-
-	public function testAddAndRemoveProductQuantity(): void
-	{
-		$user = new User('John', '12345678');
-		$cart = new Cart($user);
-		$product = new Product('Product 1', 50.0);
-
-		$cart->addProduct($product, 2);
-		$cart->addProduct($product, -1);
-
-		$this->assertEquals(50.0, $cart->getTotalValue());
-	}
-
-	public function testZeroProductQuantity(): void
-	{
-		$user = new User('John', '12345678');
-		$cart = new Cart($user);
-		$product = new Product('Product 1', 50.0);
-
-		$cart->addProduct($product, 2);
-		$cart->addProduct($product, -2);
-
-		$this->assertEquals(0.0, $cart->getTotalValue());
+		return [
+			'empty cart' => [
+				'operations' => [],
+				'expectedTotal' => 0.0
+			],
+			'add single product' => [
+				'operations' => [
+					['type' => 'add', 'name' => 'Product 1', 'price' => 50.0, 'quantity' => 2]
+				],
+				'expectedTotal' => 100.0
+			],
+			'add multiple products at the same time' => [
+				'operations' => [
+					['type' => 'adds', 'name' => 'Product 1', 'price' => 50.0, 'quantity' => 2],
+					['type' => 'adds', 'name' => 'Product 2', 'price' => 25.0, 'quantity' => 4],
+					['type' => 'adds', 'name' => 'Product 3', 'price' => 100.0, 'quantity' => 1]
+				],
+				'expectedTotal' => 300.0
+			],
+			'add and remove a product' => [
+				'operations' => [
+					['type' => 'add', 'name' => 'Product 1', 'price' => 50.0, 'quantity' => 1],
+					['type' => 'remove', 'itemKey' => md5('Product 1')]
+				],
+				'expectedTotal' => 0.0
+			],
+			'add and subtract quantity' => [
+				'operations' => [
+					['type' => 'add', 'name' => 'Product 1', 'price' => 50.0, 'quantity' => 3],
+					['type' => 'sub', 'itemKey' => md5('Product 1'), 'quantity' => 1]
+				],
+				'expectedTotal' => 100.0
+			],
+			'remove non-existing product' => [
+				'operations' => [
+					['type' => 'remove', 'itemKey' => md5('Product 3')]
+				],
+				'expectedTotal' => 0.0
+			],
+			'add and zero out a product' => [
+				'operations' => [
+					['type' => 'add', 'name' => 'Product 1', 'price' => 50.0, 'quantity' => 2],
+					['type' => 'sub', 'itemKey' => md5('Product 1'), 'quantity' => 2]
+				],
+				'expectedTotal' => 0.0
+			]
+		];
 	}
 }
