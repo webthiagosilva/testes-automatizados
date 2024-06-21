@@ -5,22 +5,35 @@ declare(strict_types=1);
 namespace App\Exercises\ExerciseFour\Models;
 
 use App\Exercises\ExerciseFour\Interfaces\ItemInterface;
-use App\Exercises\ExerciseFour\Interfaces\CartItemInterface;
 
-class CartItem implements CartItemInterface
+class CartItem extends Product
 {
-    private ItemInterface $item;
+    private string $uuid;
+    private string $name;
+    private float $price;
     private int $quantity;
 
     public function __construct(ItemInterface $item, int $quantity)
     {
-        $this->item = $item;
-        $this->quantity = max(0, $quantity);
+        $this->uuid = $item->getKey();
+        $this->name = $item->getName();
+        $this->price = $item->getPrice();
+        $this->setQuantity($quantity);
     }
 
-    public function getitem(): ItemInterface
+    public function getKey(): string
     {
-        return $this->item;
+        return $this->uuid;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getPrice(): float
+    {
+        return $this->price;
     }
 
     public function getQuantity(): int
@@ -28,13 +41,13 @@ class CartItem implements CartItemInterface
         return $this->quantity;
     }
 
-    public function addQuantity(int $quantity): void
+    public function setQuantity(int $quantity): void
     {
-        $this->quantity += max(0, $quantity);
+        $this->quantity = $quantity;
     }
 
-    public function subtractQuantity(int $quantity): void
+    public function getTotalAmount(): float
     {
-        $this->quantity = max(0, $this->quantity - $quantity);
+        return $this->price * $this->quantity;
     }
 }

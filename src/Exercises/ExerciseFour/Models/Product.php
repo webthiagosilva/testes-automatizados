@@ -8,20 +8,20 @@ use App\Exercises\ExerciseFour\Interfaces\ItemInterface;
 
 class Product implements ItemInterface
 {
-	private string $key;
+	private string $uuid;
 	private string $name;
 	private float $price;
 
 	public function __construct(string $name, float $price)
 	{
-		$this->key = md5($name);
+		$this->uuid = $this->generateKey();
 		$this->name = $name;
 		$this->price = $price;
 	}
 
 	public function getKey(): string
 	{
-		return $this->key;
+		return $this->uuid;
 	}
 
 	public function getName(): string
@@ -32,5 +32,10 @@ class Product implements ItemInterface
 	public function getPrice(): float
 	{
 		return $this->price;
+	}
+
+	private function generateKey(): string
+	{
+		return uniqid();
 	}
 }

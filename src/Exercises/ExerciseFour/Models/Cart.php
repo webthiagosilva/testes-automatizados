@@ -5,20 +5,21 @@ declare(strict_types=1);
 namespace App\Exercises\ExerciseFour\Models;
 
 use App\Exercises\ExerciseFour\Interfaces\CartInterface;
-use App\Exercises\ExerciseFour\Interfaces\CartItemManagerInterface;
-use App\Exercises\ExerciseFour\Interfaces\ItemInterface;
+use App\Exercises\ExerciseFour\Interfaces\CartItemActionInterface;
+use App\Exercises\ExerciseFour\Actions\AddCartItemAction;
+use App\Exercises\ExerciseFour\Actions\SubCartItemAction;
+use App\Exercises\ExerciseFour\Actions\RemoveCartItemAction;
 use App\Exercises\ExerciseFour\Interfaces\UserInterface;
-
+use Exception;
 
 class Cart implements CartInterface
 {
-	private CartItemManagerInterface $itemManager;
 	private UserInterface $user;
+	public array $items = [];
 
-	public function __construct(UserInterface $user, CartItemManagerInterface $itemManager)
+	public function __construct(UserInterface $user)
 	{
 		$this->user = $user;
-		$this->itemManager = $itemManager;
 	}
 
 	public function getUser(): UserInterface
@@ -28,31 +29,66 @@ class Cart implements CartInterface
 
 	public function getItems(): array
 	{
-		return $this->itemManager->getItemsSummary();
+		return $this->items;
 	}
 
-	public function getTotalValue(): float
+	public function setItems(array $items): void
 	{
-		return $this->itemManager->calculateTotal();
+		$this->items = $items;
 	}
 
-	public function addItems(array $items): void
+	public function getTotalAmount(): float
 	{
-		$this->itemManager->addItems($items);
+		$total = 0;
+		foreach ($this->items as $item) {
+			$total += $item->getTotalAmount();
+		}
+		return round($total, 2);
 	}
 
-	public function addItem(ItemInterface $item, int $quantity): void
+	public function addItems(array $params): array
 	{
-		$this->itemManager->addItem($item, $quantity);
+		return $this->manageItems(new AddCartItemAction(), $params);
 	}
 
-	public function subItem(string $itemKey, int $quantity): void
+	public function subItems(array $params): array
 	{
-		$this->itemManager->subtractItemQuantity($itemKey, $quantity);
+		return $this->manageItems(new SubCartItemAction(), $params);
 	}
 
-	public function removeItem(string $itemKey): void
+	public function removeItems(array $params): array
 	{
-		$this->itemManager->removeItem($itemKey);
+		return $this->manageItems(new RemoveCartItemAction(), $params);
+	}
+
+	private function manageItems(CartItemActionInterface $action, array $params): array
+	{
+		$result = [];
+
+		if (isset($params[0]) && is_array($params[0])) {
+			foreach ($params as $itemParams) {
+				$result[] = $this->executeAction($action, $itemParams);
+			}
+		} else {
+			$result[] = $this->executeAction($action, $params);
+		}
+
+		return $result;
+	}
+
+	private function executeAction(CartItemActionInterface $action, array $params): array
+	{
+		try {
+			$action->execute($this, $params);
+			return [
+				'status' => 'success',
+				'message' => 'Action executed successfully'
+			];
+		} catch (Exception $e) {
+			return [
+				'status' => 'error',
+				'message' => $e->getMessage()
+			];
+		}
 	}
 }

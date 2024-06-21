@@ -8,8 +8,6 @@ interface CartInterface
 {
 	public function getUser(): UserInterface;
 	public function getItems(): array;
-	public function addItem(ItemInterface $item, int $quantity): void;
-	public function subItem(string $itemkey,  int $quantity): void;
-	public function removeItem(string $itemKey): void;
-	public function getTotalValue(): float;
+	public function setItems(array $items): void;
+	public function getTotalAmount(): float;
 }
