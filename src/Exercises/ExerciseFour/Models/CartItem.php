@@ -6,7 +6,7 @@ namespace App\Exercises\ExerciseFour\Models;
 
 use App\Exercises\ExerciseFour\Interfaces\ItemInterface;
 
-class CartItem extends Product
+class CartItem
 {
     private string $uuid;
     private string $name;
