@@ -12,7 +12,7 @@ use App\Exercises\ExerciseFour\Interfaces\PostalServiceInterface;
 
 class CheckoutServiceTest extends TestCase
 {
-	private function checkoutProvider(): array
+	public function checkoutProvider(): array
 	{
 		return [
 			'final amount with shipping cost' => [
