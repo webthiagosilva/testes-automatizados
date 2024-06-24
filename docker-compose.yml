@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
     php:
         build:
@@ -8,7 +6,7 @@ services:
                 user: admin
                 uid: 1000
         container_name: php-app
-        user: "1000:1000"
+        user: "${uid}:${uid}"
         ports:
             - "8000:8000"
         volumes:
