@@ -50,7 +50,7 @@ class AddCartItemActionTest extends TestCase
 		$cartMock->method('getItems')->willReturn(['item_1' => $existingCartItem]);
 		$cartMock->expects($this->once())
 			->method('setItems')
-			->with($this->callback(function ($items) use ($existingCartItem) {
+			->with($this->callback(function ($items) {
 				return isset($items['item_1']) && $items['item_1']->getQuantity() === 5;
 			}));
 
