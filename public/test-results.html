@@ -145,5 +145,42 @@
             <li class="success">Convert to number with data set #6</li>
             <li class="success">Convert to number with data set #7</li>
         </ul>
+        <h2>Cart (Tests\Feature\Cart)</h2>
+        <ul>
+            <li class="success">Should return zero when cart is empty</li>
+            <li class="success">Should be able to add new items to cart as expected</li>
+            <li class="success">Should be able to increase quantity of items when adding an existing items</li>
+            <li class="success">Should be able to subtract quantity of existing items as expected</li>
+            <li class="success">Should be able to remove items from the cart as expected</li>
+            <li class="success">Should be able to remove product from cart if the quantity is reset a expected</li>
+        </ul>
+        <h2>Add Cart Item Action (Tests\Feature\AddCartItemAction)</h2>
+        <ul>
+            <li class="success">Execute adds new item to cart</li>
+            <li class="success">Execute updates existing item quantity in cart</li>
+            <li class="success">Execute throws exception for invalid params</li>
+            <li class="success">Execute throws exception for invalid quantity</li>
+            <li class="success">Execute throws exception for invalid item</li>
+        </ul>
+        <h2>Sub Cart Item Action (Tests\Feature\SubCartItemAction)</h2>
+        <ul>
+            <li class="success">Execute subtracts quantity from cart item</li>
+            <li class="success">Execute removes cart item when quantity becomes zero</li>
+            <li class="success">Execute throws exception when item not found</li>
+            <li class="success">Execute throws exception when sub quantity exceeds current quantity</li>
+            <li class="success">Execute throws exception for invalid params</li>
+            <li class="success">Execute throws exception for invalid sub quantity</li>
+        </ul>
+        <h2>Remove Cart Item Action (Tests\Feature\RemoveCartItemAction)</h2>
+        <ul>
+            <li class="success">Execute removes cart item</li>
+            <li class="success">Execute throws exception when item not found</li>
+            <li class="success">Execute throws exception for invalid params</li>
+        </ul>
+        <h2>Checkout Service (Tests\Feature\CheckoutService)</h2>
+        <ul>
+            <li class="success">Calculate final amount with shipping cost with data set "final amount with shipping cost"</li>
+            <li class="success">Calculate final amount with shipping cost with data set "final amount without shipping cost"</li>
+        </ul>
     </body>
 </html>

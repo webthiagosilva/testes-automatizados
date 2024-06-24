@@ -8,8 +8,13 @@ require __DIR__ . '/../vendor/autoload.php';
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
 use PHPUnit\Util\TestDox\HtmlResultPrinter;
+use Tests\Feature\AddCartItemActionTest;
+use Tests\Feature\CartTest;
+use Tests\Feature\CheckoutServiceTest;
 use Tests\Feature\MultipleSumCalculatorTest;
 use Tests\Feature\HappyNumberCalculatorTest;
+use Tests\Feature\RemoveCartItemActionTest;
+use Tests\Feature\SubCartItemActionTest;
 use Tests\Feature\WordPropertiesCheckerTest;
 use Tests\Unit\MultipleStrategiesTest;
 use Tests\Unit\NumberUtilTest;
@@ -22,6 +27,12 @@ $suite->addTestSuite(WordPropertiesCheckerTest::class);
 $suite->addTestSuite(NumberUtilTest::class);
 $suite->addTestSuite(MultipleStrategiesTest::class);
 $suite->addTestSuite(WordToNumberConverterTest::class);
+$suite->addTestSuite(CartTest::class);
+$suite->addTestSuite(AddCartItemActionTest::class);
+$suite->addTestSuite(SubCartItemActionTest::class);
+$suite->addTestSuite(RemoveCartItemActionTest::class);
+$suite->addTestSuite(CheckoutServiceTest::class);
+
 
 $htmlOutputFile = __DIR__ . '/test-results.html';
 $htmlPrinter = new HtmlResultPrinter($htmlOutputFile);
