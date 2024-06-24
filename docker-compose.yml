@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+    php:
+        build:
+            context: .
+            args:
+                user: admin
+                uid: 1000
+        container_name: php-app
+        user: "1000:1000"
+        ports:
+            - "8000:8000"
+        volumes:
+            - .:/var/www/html
+        networks:
+            - app-network
+        mem_limit: 500m
+        cpus: "1.0"
+
+networks:
+    app-network:
+        driver: bridge

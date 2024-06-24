@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
 
-#composer install
+composer install
 
 exec "$@"
